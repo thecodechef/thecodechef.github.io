@@ -29,5 +29,9 @@ jobs:
 
 workflows:
   version: 2
-  jobs:
-    - local_test
+  test:
+    jobs:
+      - local_test:
+          filters:
+            branches:
+              only: master
