@@ -12,6 +12,7 @@ end
 
 group :test do
   gem 'aruba'
+  gem 'aruba-contrib'
   gem 'cucumber'
   gem 'rspec'
 end
