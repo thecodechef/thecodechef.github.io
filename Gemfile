@@ -10,6 +10,10 @@ group :development do
   gem 'guard-rspec'
 end
 
+group :danger do
+  gem 'danger'
+end
+
 group :test do
   gem 'aruba'
   gem 'aruba-contrib'
