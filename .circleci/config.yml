@@ -30,7 +30,4 @@ jobs:
 workflows:
   version: 2
   jobs:
-    - local_test:
-        filters:
-          branches:
-            only: master
+    - local_test
