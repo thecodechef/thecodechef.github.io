@@ -1,0 +1,36 @@
+version: 2.1
+
+executors:
+  ruby:
+    docker:
+      - image: circleci/ruby:2.6.1
+  working_directory: '~/thecodechef.github.io'
+
+commands:
+  gems:
+    description: 'Install Gems'
+    steps:
+      - restore_cache:
+          keys:
+            - 'v2-gemfile-{{ checksum "Gemfile.lock" }}'
+      - run: gem install bundler
+      - run: bundler install --path vendor/bundle
+      - save_cache:
+          key: v2-gemfile-{{ checksum "Gemfile.lock" }}
+          when: on_success
+          paths:
+            - ~/thecodechef.github.io/vendor/bundle
+jobs:
+  local_test:
+    executor: ruby
+    steps:
+      - checkout
+      - gems
+
+workflows:
+  version: 2
+  jobs:
+    - local_test:
+        filters:
+          branches:
+            only: master
